@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arterics Shop</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 10px; background-color: #f5f7fa; }
+    .product { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); margin-bottom: 15px; background-color: #fff; overflow: hidden; }
+    .product img { width: 100%; height: auto; }
+    .info { padding: 10px; }
+    .buy-btn { background-color: #0088cc; color: white; padding: 10px; border: none; border-radius: 5px; width: 100%; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <h2>Arterics Shop</h2>
+
+  <div class="product">
+    <img src="https://via.placeholder.com/400x300" alt="Куртка Arterics">
+    <div class="info">
+      <h3>Куртка Arterics GTX</h3>
+      <p>Цена: 350$</p>
+      <button class="buy-btn" onclick="buy('Куртка Arterics GTX',350)">Купить</button>
+    </div>
+  </div>
+
+  <div class="product">
+    <img src="https://via.placeholder.com/400x300" alt="Штаны Arterics">
+    <div class="info">
+      <h3>Штаны Arterics Active</h3>
+      <p>Цена: 220$</p>
+      <button class="buy-btn" onclick="buy('Штаны Arterics Active',220)">Купить</button>
+    </div>
+  </div>
+
+<script>
+  let tg = window.Telegram.WebApp;
+
+  function buy(product, price) {
+    tg.MainButton.setText(`Оплатить ${price}$`).show();
+    tg.MainButton.onClick(() => {
+      tg.sendData(JSON.stringify({ product, price }));
+      tg.close();
+    });
+  }
+
+  tg.ready();
+</script>
+
+</body>
+</html>
